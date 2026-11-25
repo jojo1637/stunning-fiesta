@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一图读懂《市场监督管理所条例》｜网页版</title>
+<style>
+  :root{
+    --red:#b0101d;--red-deep:#7c0b16;--red-soft:#fbeeea;--gold:#d6a24a;
+    --ink:#2c2926;--muted:#6b645b;--line:#e8ded0;--paper:#fbf8f3;--wash:#f4eee4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  svg.defs{position:absolute;width:0;height:0;overflow:hidden}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;height:64px;background:rgba(251,248,243,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1180px;margin:auto;height:100%;padding:0 24px;display:flex;align-items:center;gap:22px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--red-deep);white-space:nowrap;text-decoration:none;font-size:17px}
+  .brand .mark{width:34px;height:34px;border-radius:8px;background:var(--red);color:#fff;display:grid;place-items:center;font-size:14px;letter-spacing:-1px}
+  .brand small{font-size:11px;color:#a08e79;font-weight:700;border:1px solid var(--line);padding:2px 6px;border-radius:4px}
+  .links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
+  .links::-webkit-scrollbar{display:none}
+  .links a{padding:8px 11px;border-radius:6px;color:#5f584f;text-decoration:none;font-size:14px;white-space:nowrap;transition:.2s}
+  .links a:hover,.links a.active{background:var(--red-soft);color:var(--red)}
+  .nav-actions{display:flex;gap:8px;flex:none}
+  .btn{font-size:13px;padding:8px 13px;border-radius:6px;border:1px solid var(--red);background:var(--red);color:#fff;text-decoration:none;cursor:pointer;font-family:inherit;transition:.2s;white-space:nowrap}
+  .btn:hover{background:var(--red-deep)}
+  .btn.ghost{background:transparent;color:var(--red)}
+  .btn.ghost:hover{background:var(--red-soft)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(130deg,#8e0d18 0%,#b0101d 58%,#c6202b 100%)}
+  .hero::before{content:"";position:absolute;right:-140px;top:-180px;width:640px;height:640px;border:1px solid rgba(255,255,255,.13);border-radius:50%;box-shadow:0 0 0 70px rgba(255,255,255,.035),0 0 0 150px rgba(255,255,255,.025)}
+  .hero::after{content:"";position:absolute;left:-80px;bottom:-180px;width:380px;height:380px;border:1px solid rgba(255,225,170,.18);border-radius:50%}
+  .hero-inner{position:relative;z-index:2;max-width:1180px;margin:auto;padding:74px 24px 110px;display:grid;grid-template-columns:1.5fr .5fr;gap:40px;align-items:center}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;letter-spacing:2px;color:#f5d9a4;border:1px solid rgba(255,255,255,.4);padding:7px 14px;border-radius:3px}
+  .hero h1{font-size:clamp(38px,5.2vw,68px);line-height:1.12;letter-spacing:3px;margin:22px 0 14px;font-weight:900;text-shadow:0 4px 16px rgba(0,0,0,.16)}
+  .hero .lead{font-size:clamp(16px,1.7vw,22px);color:rgba(255,255,255,.92);letter-spacing:1px}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .hero .meta span{font-size:13px;padding:6px 12px;border:1px solid rgba(255,255,255,.32);border-radius:20px;background:rgba(255,255,255,.06)}
+  .date-seal{justify-self:center;width:190px;height:190px;border:3px solid rgba(255,225,170,.85);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-8deg);background:rgba(255,255,255,.05);text-align:center}
+  .date-seal span{font-size:14px;letter-spacing:3px;color:#f6ddad}
+  .date-seal strong{font-size:27px;letter-spacing:1px;margin:7px 0;color:#fff}
+  .date-seal i{width:64px;height:1px;background:#f6ddad;opacity:.8}
+
+  /* facts */
+  .facts{max-width:1180px;margin:-52px auto 0;padding:0 24px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .fact{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 18px;text-align:center;box-shadow:0 12px 30px rgba(90,60,30,.10)}
+  .fact b{display:block;font-size:38px;line-height:1;color:var(--red);font-weight:900}
+  .fact b small{font-size:16px}
+  .fact span{display:block;font-size:14px;color:var(--muted);margin-top:9px}
+
+  /* sections */
+  main section{padding:74px 0 0;scroll-margin-top:64px}
+  .wrap{max-width:1180px;margin:auto;padding:0 24px}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:26px;border-bottom:1px solid var(--line);padding-bottom:16px}
+  .sec-head .no{width:36px;height:36px;flex:none;border-radius:6px;background:var(--red);color:#fff;font-weight:900;font-size:15px;display:grid;place-items:center}
+  .sec-head h2{font-size:clamp(23px,2.4vw,30px);letter-spacing:1px}
+  .sec-head .en{margin-left:auto;font-size:12px;letter-spacing:2px;color:#b3a695;text-transform:uppercase}
+  .intro{font-size:17px;color:#544d45;max-width:900px;margin-bottom:22px}
+  .intro b{color:var(--red)}
+  .tags{display:flex;flex-wrap:wrap;gap:12px}
+  .tag{background:var(--wash);border:1px solid #e8dcc7;border-left:4px solid var(--gold);border-radius:5px;padding:11px 17px;font-size:16px;font-weight:700}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;box-shadow:0 6px 20px rgba(90,60,30,.05)}
+  .card .k{font-size:12px;letter-spacing:2px;color:#a08e79;font-weight:700}
+  .card .v{font-size:21px;font-weight:800;color:var(--red-deep);margin:9px 0}
+  .card .d{font-size:15px;color:#605950;line-height:1.75}
+
+  /* duties */
+  .duties{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px}
+  .duty{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(90,60,30,.05);transition:transform .25s,box-shadow .25s}
+  .duty:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(90,60,30,.12)}
+  .duty .ic{width:48px;height:48px;flex:none;border-radius:10px;background:var(--red-soft);color:var(--red);display:grid;place-items:center}
+  .duty .ic svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .duty h3{font-size:19px;margin-bottom:6px}
+  .duty h3 em{font-style:normal;color:var(--gold);font-size:14px;margin-right:8px;font-weight:900}
+  .duty p{font-size:15px;color:#655e55;line-height:1.7}
+  .duty.alt{background:var(--wash);border-style:dashed}
+  .note{margin-top:18px;background:#fdf4e9;border:1px dashed #d9b983;border-radius:9px;padding:15px 20px;font-size:15px;color:#6a573c}
+  .note b{color:var(--red)}
+
+  /* duo */
+  .duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+  .panel.reg{border-top:5px solid var(--red)}
+  .panel.ser{border-top:5px solid var(--gold)}
+  .panel h3{font-size:20px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  .panel h3 span{font-size:13px;color:#fff;background:var(--red);border-radius:4px;padding:3px 9px}
+  .panel.ser h3 span{background:var(--gold)}
+  .panel li{list-style:none;font-size:15px;color:#5d564d;padding-left:20px;position:relative;margin-bottom:10px;line-height:1.7}
+  .panel li::before{content:"";position:absolute;left:2px;top:10px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+  .panel.ser li::before{background:var(--gold)}
+
+  /* flow */
+  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center}
+  .fbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 16px;text-align:center}
+  .fbox b{display:block;font-size:18px;color:var(--red-deep)}
+  .fbox span{display:block;font-size:14px;color:#6a635a;margin-top:6px}
+  .fbox.core{background:var(--red);border-color:var(--red)}
+  .fbox.core b,.fbox.core span{color:#fff}
+  .farr{color:var(--gold);font-size:28px;font-weight:900;text-align:center}
+  .coord-msg{margin-top:16px;background:var(--wash);border-radius:9px;padding:15px 20px;font-size:15px;color:#5b544b}
+  .coord-msg b{color:var(--red)}
+
+  /* capacity */
+  .cap{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:9px;padding:18px 20px}
+  .cap b{display:block;font-size:18px;margin-bottom:6px}
+  .cap span{font-size:15px;color:#655e55;line-height:1.7}
+
+  /* liability */
+  .warn{background:#fff5f3;border:1px solid #edc5bd;border-radius:12px;padding:24px}
+  .warn h3{font-size:20px;color:#9b111f;margin-bottom:10px}
+  .warn p{font-size:16px;line-height:1.8;color:#5d4b47}
+  .warn b{color:#9b111f}
+  .endbox{background:#f6f1e8;border:1px solid #e3d6bf;border-radius:12px;padding:24px}
+  .endbox h3{font-size:20px;color:#7c5a22;margin-bottom:10px}
+  .endbox p{font-size:16px;line-height:1.8;color:#5d5548;margin-bottom:6px}
+
+  /* timeline */
+  .track{display:grid;grid-template-columns:repeat(3,1fr);position:relative;margin-top:26px}
+  .track::before{content:"";position:absolute;left:16%;right:16%;top:13px;height:3px;background:linear-gradient(90deg,#e0cba3,var(--red))}
+  .t{text-align:center;position:relative;z-index:1}
+  .t i{display:block;width:28px;height:28px;border-radius:50%;background:#fff;border:3px solid var(--red);margin:0 auto 12px}
+  .t:last-child i{background:var(--red)}
+  .t b{display:block;font-size:21px;color:var(--red)}
+  .t span{display:block;font-size:14px;color:#655e55;margin-top:5px}
+
+  /* accordion */
+  .acc{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:12px}
+  details{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  summary{cursor:pointer;padding:15px 18px;font-weight:700;font-size:16px;display:flex;justify-content:space-between;align-items:center;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--red);font-size:20px;font-weight:400}
+  details[open] summary{background:var(--red-soft)}
+  details[open] summary::after{content:"−"}
+  details p{padding:0 18px 17px;font-size:15px;color:#5e574f;line-height:1.8}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* footer & top */
+  footer{margin-top:80px;background:#2d2926;color:#cfc6b8;padding:30px 24px;text-align:center;font-size:14px}
+  footer b{color:#f0d6a0}
+  .top{position:fixed;right:24px;bottom:24px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--red);font-size:20px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.12);opacity:0;pointer-events:none;transition:.25s;z-index:60}
+  .top.show{opacity:1;pointer-events:auto}
+
+  @media(max-width:900px){
+    .hero-inner{grid-template-columns:1fr;padding-bottom:96px}
+    .date-seal{display:none}
+    .facts{grid-template-columns:repeat(2,1fr)}
+    .flow{grid-template-columns:1fr}
+    .farr{transform:rotate(90deg)}
+    .nav-actions .btn:last-child{display:none}
+  }
+  @media(max-width:600px){
+    .nav-inner{padding:0 14px;gap:12px}
+    .brand small,.nav-actions{display:none}
+    .hero-inner{padding:54px 18px 92px}
+    .hero h1{letter-spacing:1px}
+    .facts{padding:0 16px;gap:10px;margin-top:-42px}
+    .fact{padding:16px 10px}
+    .fact b{font-size:30px}
+    .wrap{padding:0 16px}
+    main section{padding-top:56px}
+    .sec-head .en{display:none}
+    .acc{grid-template-columns:1fr}
+    .track{grid-template-columns:1fr;gap:24px}
+    .track::before{left:13px;right:auto;top:10px;bottom:10px;width:3px;height:auto}
+    .t{display:flex;text-align:left;gap:16px;align-items:center}
+    .t i{margin:0;flex:none}
+    .duty{padding:16px}
+  }
+  @media print{
+    .nav,.top,.nav-actions{display:none}
+    .hero{background:#8e0d18 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .reveal{opacity:1;transform:none}
+    main section{page-break-inside:avoid}
+  }
+</style>
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+<svg class="defs" aria-hidden="true">
+  <symbol id="i1" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><circle cx="8.5" cy="10.5" r="2"/><path d="M5.2 16c.6-1.8 1.9-2.6 3.3-2.6s2.7.8 3.3 2.6M14 9h5M14 13h4"/></symbol>
+  <symbol id="i2" viewBox="0 0 24 24"><path d="M12 2.5 20 5.7v5.6c0 4.6-3.2 8.6-8 10.2-4.8-1.6-8-5.6-8-10.2V5.7z"/><path d="m8.5 12 2.4 2.4 4.7-4.8"/></symbol>
+  <symbol id="i3" viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M6 7l-3.5 7h7zM18 7l-3.5 7h7zM8 20h8"/></symbol>
+  <symbol id="i4" viewBox="0 0 24 24"><path d="M20.5 12.2c0 4-3.8 7.2-8.5 7.2-1 0-2-.1-2.9-.4L4 20.5l1.6-4.4C4.6 14.8 4 13.5 4 12.2 4 8.2 7.8 5 12.5 5s8 3.2 8 7.2z"/><path d="M9.5 12h6"/></symbol>
+  <symbol id="i5" viewBox="0 0 24 24"><path d="m4 20 5-5M14.5 4.5l5 5M12.5 6.5l5 5M3.4 16.6l4 4M9.5 9.5l9-9 5 5-9 9z"/></symbol>
+  <symbol id="i6" viewBox="0 0 24 24"><path d="M4 10v4h3l8 5V5L7 10zM18.5 9c1.2 1.7 1.2 4.3 0 6M20.8 6.8c2.3 2.9 2.3 7.5 0 10.4"/></symbol>
+  <symbol id="i7" viewBox="0 0 24 24"><path d="M12 2.8 14.6 8l5.7.8-4.1 4 1 5.7-5.2-2.7L6.8 18.5l1-5.7-4.1-4L9.4 8z"/></symbol>
+</svg>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="mark">市监</span><span>条例速读</span><small>网页版</small></a>
+    <div class="links">
+      <a href="#overview" class="active">概览</a>
+      <a href="#principle">原则</a>
+      <a href="#position">定位</a>
+      <a href="#duties">职责</a>
+      <a href="#perform">履职</a>
+      <a href="#coord">协同</a>
+      <a href="#capacity">保障</a>
+      <a href="#timeline">时间线</a>
+      <a href="#fulltext">逐条速览</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn" onclick="window.print()">打印</button>
+      <a class="btn ghost" href="市场监督管理所条例_一图读懂.png" download>下载长图</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <div class="kicker">中华人民共和国国务院令 · 第846号</div>
+      <h1>一图读懂<br>市场监督管理所条例</h1>
+      <p class="lead">加强基层监管力量 · 守护市场安全 · 服务高质量发展</p>
+      <div class="meta"><span>2026年11月1日起施行</span><span>全文共19条</span><span>取代1991年《工商行政管理所条例》</span></div>
+    </div>
+    <div class="date-seal"><span>自</span><strong>2026.11.01</strong><i></i><span>起施行</span></div>
+  </div>
+</header>
+
+<div class="facts" id="overview">
+  <div class="fact"><b>19<small>条</small></b><span>条例全文条款</span></div>
+  <div class="fact"><b>7<small>项</small></b><span>明确主要职责</span></div>
+  <div class="fact"><b>1<small>个</small></b><span>定性：县级部门派出机构</span></div>
+  <div class="fact"><b>35<small>年</small></b><span>取代1991年旧条例</span></div>
+</div>
+
+<main>
+  <section id="principle">
+    <div class="wrap reveal">
+      <div class="sec-head"><div class="no">01</div><h2>立法目的与工作原则</h2><div class="en">Purpose & Principles</div></div>
+      <p class="intro">加强市场监督管理所<b>建设和管理</b>，更好发挥市场监督管理职能作用，<b>服务经济社会高质量发展</b>。</p>
+      <div class="tags">
+        <div class="tag">坚持中国共产党的领导</div><div class="tag">坚持以人民为中心</div>
+        <div class="tag">坚持依法行政</div><div class="tag">坚持保障安全</div><div class="tag">坚持服务发展</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="position">
+    <div class="wrap reveal">
+      <div class="sec-head"><div class="no">02</div><h2>机构定位：谁在履职</h2><div class="en">Institutional Positioning</div></div>
+      <div class="grid3">
+        <div class="card"><div class="k">LEGAL STATUS · 身份</div><div class="v">县级派出机构</div><div class="d">市场监督管理所是县级人民政府市场监督管理部门的派出机构。</div></div>
+        <div class="card"><div class="k">AUTHORITY · 权限</div><div class="v">以县级部门名义</div><div class="d">以县级人民政府市场监督管理部门的名义作出行政行为，接受其领导和管理。</div></div>
+        <div class="card"><div class="k">LAYOUT · 设置</div><div class="v">按经济区域设立</div><div class="d">设立和调整由县级市场监管部门提出方案，按规定权限和程序办理。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="duties">
+    <div class="wrap reveal">
+      <div class="sec-head"><div class="no">03</div><h2>七项主要职责</h2><div class="en">Core Duties</div></div>
+      <div class="duties">
+        <div class="duty"><div class="ic"><svg><use href="#i1"/></svg></div><div><h3><em>01</em>登记相关事项</h3><p>办理个体工商户、农民专业合作社（联合社）及其分支机构登记相关事项。</p></div></div>
+        <div class="duty"><div class="ic"><svg><use href="#i2"/></svg></div><div><h3><em>02</em>安全与质量监管</h3><p>食品生产经营，药品、医疗器械、化妆品经营，特种设备使用及产品质量日常监督管理。</p></div></div>
+        <div class="duty"><div class="ic"><svg><use href="#i3"/></svg></div><div><h3><em>03</em>市场秩序监管</h3><p>反不正当竞争、广告、价格、计量等领域的日常监督管理。</p></div></div>
+        <div class="duty"><div class="ic"><svg><use href="#i4"/></svg></div><div><h3><em>04</em>投诉举报处理</h3><p>处理市场监管领域投诉举报，保护消费者、经营主体等合法权益。</p></div></div>
+        <div class="duty"><div class="ic"><svg><use href="#i5"/></svg></div><div><h3><em>05</em>违法行为查处</h3><p>查处或者协助查处违反市场监督管理法律、法规、规章的行为。</p></div></div>
+        <div class="duty"><div class="ic"><svg><use href="#i6"/></svg></div><div><h3><em>06</em>法治宣传教育</h3><p>宣传市场监督管理有关法律、法规、规章。</p></div></div>
+        <div class="duty"><div class="ic"><svg><use href="#i7"/></svg></div><div><h3><em>07</em>综合行政执法</h3><p>其他市场监督管理综合行政执法等职责。</p></div></div>
+        <div class="duty alt"><div class="ic" style="background:#fff"><svg><use href="#i7"/></svg></div><div><h3><em>补</em>职责动态调整</h3><p>具体职责由县级市场监管部门按实际情况提出方案、按程序确定调整，并向社会公告。</p></div></div>
+      </div>
+      <div class="note"><b>提示：</b>市场监督管理所在县级人民政府市场监督管理部门的职责范围内开展辖区内工作，避免出现“小马拉大车”。</div>
+    </div>
+  </section>
+
+  <section id="perform">
+    <div class="wrap reveal">
+      <div class="sec-head"><div class="no">04</div><h2>履职要求：规范监管 + 优化服务</h2><div class="en">Regulation & Service</div></div>
+      <div class="duo">
+        <div class="panel reg">
+          <h3><span>规范监管</span>严格规范公正文明执法</h3>
+          <ul><li>建立健全工作制度，依法开展市场监管活动</li><li>避免或尽量减少对经营主体正常生产经营活动的影响</li><li>接受社会监督</li><li>工作人员按规定的权限和程序履职，清正廉洁、秉公执法</li></ul>
+        </div>
+        <div class="panel ser">
+          <h3><span>优化服务</span>规范、便利、高效</h3>
+          <ul><li>增强服务意识，主动沟通辖区经营主体与消费者</li><li>公开办事制度，提供规范便利高效的政务服务</li><li>县级人民政府有关部门在职责范围内提供支持</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="coord">
+    <div class="wrap reveal">
+      <div class="sec-head"><div class="no">05</div><h2>协同机制：融入基层治理</h2><div class="en">Local Coordination</div></div>
+      <div class="flow">
+        <div class="fbox"><b>县级市场监管部门</b><span>领导和管理 · 职责范围内统筹</span></div>
+        <div class="farr">→</div>
+        <div class="fbox core"><b>市场监督管理所</b><span>专业监管 · 执法服务 · 最后一公里</span></div>
+        <div class="farr">⇄</div>
+        <div class="fbox"><b>乡镇政府 / 街道办事处</b><span>统一指挥协调 · 联合监管</span></div>
+      </div>
+      <div class="coord-msg">县级人民政府建立健全将市场监督管理所纳入乡镇、街道<b>统一指挥协调</b>的工作机制；在联合监督管理、投诉举报处理等方面加强沟通协调。</div>
+    </div>
+  </section>
+
+  <section id="capacity">
+    <div class="wrap reveal">
+      <div class="sec-head"><div class="no">06</div><h2>队伍与能力建设</h2><div class="en">Capacity Building</div></div>
+      <div class="grid3">
+        <div class="cap"><b>人员配备</b><span>适应辖区经济社会发展和履行职责的需要。</span></div>
+        <div class="cap"><b>培训提升</b><span>县级市场监管部门组织工作人员参加培训，提升履职能力。</span></div>
+        <div class="cap"><b>岗位责任制</b><span>建立健全岗位责任制，并对工作人员进行定期考核。</span></div>
+        <div class="cap"><b>三化建设</b><span>加强标准化、规范化、专业化建设，具体办法由国务院市场监管部门规定。</span></div>
+        <div class="cap"><b>数智保障</b><span>县级人民政府提供保障，提升监督管理信息化、智能化水平。</span></div>
+        <div class="cap"><b>标识着装</b><span>使用统一、规范的标识；执法时按规定规范着装。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap reveal">
+      <div class="sec-head"><div class="no">07</div><h2>责任追究与附则</h2><div class="en">Accountability</div></div>
+      <div class="duo">
+        <div class="warn"><h3>这些行为将被追责</h3><p>工作人员<b>滥用职权、玩忽职守、徇私舞弊</b>，或者有其他违反本条例规定行为的，依法给予处分；构成犯罪的，依法追究<b>刑事责任</b>。</p></div>
+        <div class="endbox"><h3>适用范围与新旧衔接</h3><p>· 专业所、队、站等其他派出机构参照本条例执行。</p><p>· 本条例自2026年11月1日起施行，《工商行政管理所条例》同时废止。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <div class="wrap reveal">
+      <div class="sec-head"><div class="no">08</div><h2>条例出台时间线</h2><div class="en">Timeline</div></div>
+      <div class="track">
+        <div class="t"><i></i><div><b>2026.08.21</b><span>国务院第94次常务会议通过</span></div></div>
+        <div class="t"><i></i><div><b>2026.09.06</b><span>国务院令第846号公布</span></div></div>
+        <div class="t"><i></i><div><b>2026.11.01</b><span>正式施行 · 旧条例废止</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fulltext">
+    <div class="wrap reveal">
+      <div class="sec-head"><div class="no">09</div><h2>逐条速览（19条）</h2><div class="en">Article Guide</div></div>
+      <p class="intro">点击展开，快速查看每一条的核心内容。完整表述以国务院令第846号原文为准。</p>
+      <div class="acc">
+        <details><summary>第一条 · 立法目的</summary><p>加强市场监督管理所建设和管理，更好发挥市场监督管理职能作用，服务经济社会高质量发展。</p></details>
+        <details><summary>第二条 · 工作原则</summary><p>坚持中国共产党的领导，坚持以人民为中心，坚持依法行政、保障安全、服务发展。</p></details>
+        <details><summary>第三条 · 机构性质</summary><p>市场监督管理所是县级人民政府市场监督管理部门的派出机构，以该部门名义作出行政行为；县级部门加强领导和管理。</p></details>
+        <details><summary>第四条 · 设立调整</summary><p>按照经济区域设立；设立和调整由县级市场监管部门提出方案，按规定的权限和程序办理。</p></details>
+        <details><summary>第五条 · 主要职责</summary><p>在县级部门职责范围内开展辖区内工作，履行登记、安全与质量监管、市场秩序监管、投诉举报处理、违法查处、法治宣传、综合执法等七项职责；具体职责由县级部门按程序确定调整并向社会公告。</p></details>
+        <details><summary>第六条 · 规范监管</summary><p>建立健全工作制度，依法开展活动，严格规范公正文明执法，避免或尽量减少对经营主体正常生产经营活动的影响，接受社会监督。</p></details>
+        <details><summary>第七条 · 优化服务</summary><p>增强服务意识，加强与辖区经营主体、消费者沟通，公开办事制度，提供规范、便利、高效的政务服务。</p></details>
+        <details><summary>第八条 · 部门支持</summary><p>县级人民政府有关部门应当在职责范围内，支持市场监督管理所开展工作。</p></details>
+        <details><summary>第九条 · 基层协同</summary><p>县级人民政府建立健全纳入乡镇、街道统一指挥协调的工作机制；在联合监督管理、投诉举报处理等方面加强与乡镇人民政府、街道办事处沟通协调。</p></details>
+        <details><summary>第十条 · 人员配备</summary><p>工作人员配备应当适应辖区经济社会发展和履行职责的需要。</p></details>
+        <details><summary>第十一条 · 履职纪律</summary><p>工作人员应当按照规定的权限和程序履行职责，做到清正廉洁、秉公执法。</p></details>
+        <details><summary>第十二条 · 培训</summary><p>县级人民政府市场监督管理部门根据工作需要组织工作人员参加培训，提升履职能力。</p></details>
+        <details><summary>第十三条 · 考核</summary><p>建立健全工作人员岗位责任制，并对工作人员进行定期考核。</p></details>
+        <details><summary>第十四条 · 三化建设</summary><p>加强市场监督管理所标准化、规范化、专业化建设；具体办法由国务院市场监督管理部门规定。</p></details>
+        <details><summary>第十五条 · 条件保障</summary><p>县级人民政府按有关规定提供保障，提升监督管理信息化、智能化水平。</p></details>
+        <details><summary>第十六条 · 标识着装</summary><p>使用统一、规范的标识；工作人员履行行政执法职责时按规定规范着装。</p></details>
+        <details><summary>第十七条 · 责任追究</summary><p>滥用职权、玩忽职守、徇私舞弊或有其他违反本条例规定行为的，依法给予处分；构成犯罪的，依法追究刑事责任。</p></details>
+        <details><summary>第十八条 · 参照执行</summary><p>市场监督管理部门的专业所、队、站等其他派出机构参照本条例执行。</p></details>
+        <details><summary>第十九条 · 施行废止</summary><p>本条例自2026年11月1日起施行，《工商行政管理所条例》同时废止。</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><b>一图读懂《市场监督管理所条例》</b><br>资料来源：中国政府网 · 司法部 · 市场监管总局　|　内容供学习参考，以国务院令原文为准</footer>
+<button class="top" id="topBtn" title="返回顶部" aria-label="返回顶部">↑</button>
+
+<script>
+  const revealEls=document.querySelectorAll('.reveal');
+  const revealObserver=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealObserver.unobserve(e.target)}});
+  },{threshold:.12});
+  revealEls.forEach(el=>revealObserver.observe(el));
+
+  const navLinks=[...document.querySelectorAll('.links a')];
+  const sections=[...document.querySelectorAll('main section[id]')];
+  const navObserver=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id=e.target.id;
+        navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
+      }
+    });
+  },{rootMargin:'-25% 0px -65% 0px'});
+  sections.forEach(s=>navObserver.observe(s));
+
+  const topBtn=document.getElementById('topBtn');
+  window.addEventListener('scroll',()=>topBtn.classList.toggle('show',window.scrollY>600),{passive:true});
+  topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
